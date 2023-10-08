@@ -1,0 +1,7 @@
+{
+  "manifest_version": 3,
+  "name": "My Web Application",
+  "version": "1.0",
+  "description": "This is a web application that uses the Chrome Identity API to sign in with Chrome.",
+  "permissions": ["identity"]
+}
