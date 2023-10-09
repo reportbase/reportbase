@@ -3,30 +3,29 @@
 <head>
   <title>Google Authenticate Example</title>
 </head>
-<body>
-  <div id="g-signin2"></div>
-  <div id="email"></div>
-</body>
 
   <script src="https://apis.google.com/js/platform.js"></script>
   <script>
-    function onSignIn(googleUser) 
-    {
-        const email = googleUser.getBasicProfile().getEmail();
-       document.querySelector('#email').textContent = email;
-    }
+    const script = document.createElement('script');
+script.src = 'https://apis.google.com/js/platform.js';
+script.async = true;
+script.defer = true;
+document.head.appendChild(script);
 
-  gapi.load('auth2', function() 
-  {
-    gapi.signin2.render('g-signin2', {
-      'scope': 'profile email',
-      'width': 240,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-      'onsuccess': onSignIn
-    });
+// Create a function to get the user's email address.
+function getEmail() {
+  // Wait for the Google APIs platform library to load.
+  window.addEventListener('gapi.load', function() {
+    // Get the user's email address.
+    const email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
+
+    // Do something with the user's email address.
+    console.log(email);
   });
+}
+
+// Get the user's email address when the page loads.
+window.addEventListener('load', getEmail);
   </script>
 
 </html>
