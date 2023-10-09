@@ -5,24 +5,22 @@
 </head>
 
   <script>
-    const script = document.createElement('script');
-script.src = 'https://apis.google.com/js/platform.js';
-script.async = false;
-script.defer = false;
-document.head.appendChild(script);
+   function getEmail() {
+      // Wait for the Google APIs platform library to load.
+      if (window.gapi) {
+        // Get the user's email address.
+        const email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
 
-// Create a function to get the user's email address.
-function getEmail() {
-  // Wait for the Google APIs platform library to load.
-  window.addEventListener('gapi.load', function() {
+        // Do something with the user's email address.
+        console.log(email);
+      } else {
+        // The Google APIs platform library hasn't loaded yet.
+        // Try again later.
+        setTimeout(getEmail, 100);
+      }
+    }
+
     // Get the user's email address.
-    const email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
-
-    // Do something with the user's email address.
-    console.log(email);
-  });
-}
-
     getEmail();
   </script>
 
