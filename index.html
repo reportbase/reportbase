@@ -5,6 +5,8 @@
 </head>
 <body>
   <div id="g-signin2"></div>
+  <div id="email"></div>
+</body>
 
   <script src="https://apis.google.com/js/platform.js"></script>
   <script>
@@ -13,7 +15,7 @@
         const email = googleUser.getBasicProfile().getEmail();
        document.querySelector('#email').textContent = email;
     }
-/*
+
   gapi.load('auth2', function() 
   {
     gapi.signin2.render('g-signin2', {
@@ -25,10 +27,6 @@
       'onsuccess': onSignIn
     });
   });
-*/  
-    
   </script>
 
-  <div id="email"></div>
-</body>
 </html>
