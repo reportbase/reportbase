@@ -9,7 +9,8 @@
    function onloadplatform() {
       // Wait for the Google APIs platform library to load.
         gapi.load('auth2', function() {
-            const email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
+            const user = gapi.auth2.getAuthInstance().currentUser
+            var email = user.get().getBasicProfile().getEmail();
             console.log(email);
         });
      }
