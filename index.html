@@ -16,7 +16,8 @@
       document.querySelector('#email').textContent = email;
     }
 
-    // Render the Google Sign-In button.
+   gapi.load('auth2', function() 
+  {
     gapi.signin2.render('g-signin2', {
       'scope': 'profile email',
       'width': 240,
@@ -25,6 +26,9 @@
       'theme': 'dark',
       'onsuccess': onSignIn
     });
+});
+    
+    
   </script>
 
   <div id="email"></div>
