@@ -12,7 +12,9 @@
         {
              gapi.auth2.init(
                {
-                 client_id: "676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com"
+                 client_id: "676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com",
+                 ux_mode: 'redirect',
+                 redirect_uri: 'https://reportbase.me'
                });
             var auth2 = gapi.auth2;
             const authinstance = auth2.getAuthInstance();
