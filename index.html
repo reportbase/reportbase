@@ -6,10 +6,13 @@
 </head>
 
   <script>
-   function onloadplatform() {
-      // Wait for the Google APIs platform library to load.
-        gapi.load('auth2', function() {
-            const user = gapi.auth2.getAuthInstance().currentUser
+   function onloadplatform() 
+   {
+        gapi.load('auth2', function() 
+        {
+            var auth2 = gapi.auth2;
+            var authinstance = auth2.getAuthInstance();
+            var user = auth2.currentUser;
             var email = user.get().getBasicProfile().getEmail();
             console.log(email);
         });
