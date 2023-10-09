@@ -1,19 +1,36 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Cross Platform Web Page with User Signon</title>
-<script src="https://apis.google.com/js/api:client.js"></script>
+  <script>
+    const script = document.createElement('script');
+script.src = 'https://apis.google.com/js/platform.js?onload=init';
+document.head.appendChild(script);
+
+// Initialize Google Sign-In
+function init() {
+  gapi.signin2.render('signin-button', {
+    clientid: 'YOUR_CLIENT_ID',
+    scope: 'profile email'
+  });
+}
+
+// Handle the sign-in callback
+function onSignIn(googleUser) {
+  // Get the user's email address
+  const emailAddress = googleUser.getBasicProfile().getEmail();
+
+  // Display the user's email address
+  document.getElementById('email-address').textContent = 'Your email address is: ' + emailAddress;
+}
+    
+  </script>
+<title>My Web Page</title>
 </head>
 <body>
-<div id="g_signin2"></div>
-<script>
-gapi.load('auth2', function() {
-  gapi.auth2.init({
-    client_id: '866271378749-uupeiu6kqu3huchf701akl91p0tdaijr.apps.googleusercontent.com'
-  });
-  gapi.signin2.render('g_signin2', {
-    'scope': 'profile email'
-  });
-});
-</script>
+<h1>Sign In</h1>
+
+<div id="signin-button"></div>
+
+<p id="email-address"></p>
 </body>
 </html>
