@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/platform.js?onload=onloadplatform" async defer></script>
   <title>Google Authenticate Example</title>
 </head>
 
   <script>
-   function getEmail() {
+   function onloadplatform() {
       // Wait for the Google APIs platform library to load.
-      if (window.gapi) 
-      {
         gapi.load('auth2', function() {
             const email = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
             console.log(email);
         });
-       
-      } else {
-        // The Google APIs platform library hasn't loaded yet.
-        // Try again later.
-        setTimeout(getEmail, 100);
-      }
-    }
+     }
 
-    // Get the user's email address.
-    getEmail();
+ 
   </script>
 
 </html>
