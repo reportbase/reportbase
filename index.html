@@ -18,10 +18,10 @@
             const authinstance = auth2.getAuthInstance();
             if (!authinstance.isSignedIn.get()) 
             {
-              authinstance.signIn().then(function() 
+              authinstance.signIn().then(function(user) 
               {
                  var email = authinstance.get().getBasicProfile().getEmail();
-                 console.log(email);
+                 console.log(user);
               }, 
               function(error) 
               {
