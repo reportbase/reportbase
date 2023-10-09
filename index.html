@@ -8,15 +8,13 @@
 
   <script src="https://apis.google.com/js/platform.js"></script>
   <script>
-    function onSignIn(googleUser) {
-      // Get the user's email address.
-      const email = googleUser.getBasicProfile().getEmail();
-
-      // Display the user's email address.
-      document.querySelector('#email').textContent = email;
+    function onSignIn(googleUser) 
+    {
+        const email = googleUser.getBasicProfile().getEmail();
+       document.querySelector('#email').textContent = email;
     }
-
-   gapi.load('auth2', function() 
+/*
+  gapi.load('auth2', function() 
   {
     gapi.signin2.render('g-signin2', {
       'scope': 'profile email',
@@ -26,8 +24,8 @@
       'theme': 'dark',
       'onsuccess': onSignIn
     });
-});
-    
+  });
+*/  
     
   </script>
 
