@@ -11,19 +11,21 @@
         gapi.load('auth2', function() 
         {
             var auth2 = gapi.auth2;
-            var authinstance = auth2.getAuthInstance();
-            if (authinstance) 
+            const authinstance = auth2.getAuthInstance();
+            if (!authinstance.isSignedIn.get()) 
             {
-              var email = authInstance.get().getBasicProfile().getEmail();
-              console.log(email);
-            } 
-            else 
-            {
+              authinstance.signIn().then(function() 
+              {
+                 var email = authinstance.get().getBasicProfile().getEmail();
+                 console.log(email);
+              }, 
+              function(error) 
+              {
+              });
             }
         });
      }
 
- 
   </script>
 
 </html>
