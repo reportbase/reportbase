@@ -12,9 +12,14 @@
         {
             var auth2 = gapi.auth2;
             var authinstance = auth2.getAuthInstance();
-            var user = auth2.currentUser;
-            var email = user.get().getBasicProfile().getEmail();
-            console.log(email);
+            if (authInstance) 
+            {
+              var email = authInstance.get().getBasicProfile().getEmail();
+              console.log(email);
+            } 
+            else 
+            {
+            }
         });
      }
 
