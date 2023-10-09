@@ -18,7 +18,7 @@
                });
             var auth2 = gapi.auth2;
             const authinstance = auth2.getAuthInstance();
-            if (!authinstance.isSignedIn.get()) 
+            //if (!authinstance.isSignedIn.get()) 
             {
               authinstance.signIn().then(function(user) 
               {
