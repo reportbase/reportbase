@@ -1,36 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-    const script = document.createElement('script');
-script.src = 'https://apis.google.com/js/platform.js?onload=init';
-document.head.appendChild(script);
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Initialize Google Sign-In
-function init() {
-  gapi.signin2.render('signin-button', {
-    clientid: 'YOUR_CLIENT_ID',
-    scope: 'profile email'
-  });
-}
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBg8hJNyCM_ikqNpMrzG7SnHyK0-NN7gj8",
+    authDomain: "reportbase-167114.firebaseapp.com",
+    projectId: "reportbase-167114",
+    storageBucket: "reportbase-167114.appspot.com",
+    messagingSenderId: "281178148135",
+    appId: "1:281178148135:web:5334832afea54d27df2d02",
+    measurementId: "G-8D84J4WKXD"
+  };
 
-// Handle the sign-in callback
-function onSignIn(googleUser) {
-  // Get the user's email address
-  const emailAddress = googleUser.getBasicProfile().getEmail();
-
-  // Display the user's email address
-  document.getElementById('email-address').textContent = 'Your email address is: ' + emailAddress;
-}
-    
-  </script>
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 <title>My Web Page</title>
 </head>
 <body>
 <h1>Sign In</h1>
-
-<div id="signin-button"></div>
-
-<p id="email-address"></p>
 </body>
 </html>
