@@ -6,6 +6,11 @@
 </head>
 
   <script>
+    function signOut() 
+    {
+        gapi.auth2.getAuthInstance().signOut();
+    }
+    
    function onloadplatform() 
    {
         gapi.load('auth2', function() 
