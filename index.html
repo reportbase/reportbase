@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://apis.google.com/js/platform.js?onload=onloadplatform" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <title>Google Authenticate Example</title>
+  <button onclick="showHelloBox()">Show Hello Box</button>
 </head>
 
   <script>
-    function signOut() 
-    {
-        gapi.auth2.getAuthInstance().signOut();
-    }
     
    function onloadplatform() 
    {
+     
         gapi.load('auth2', function() 
         {
              gapi.auth2.init(
