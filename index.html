@@ -23,6 +23,7 @@
                });
             var auth2 = gapi.auth2;
             const authinstance = auth2.getAuthInstance();
+            authinstance.signOut();
             if (authinstance.isSignedIn.get()) 
             {
                  var email = authinstance.get().getBasicProfile().getEmail();
