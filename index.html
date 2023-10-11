@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
+  <meta name="google-signin-client_id" content="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com">
 <head>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <title>Google Authenticate Example</title>
   <button onclick="onloadplatform()">Show Hello Box</button>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <a href="#" onclick="signOut();">Sign out</a>
 </head>
 
-  <script>
+  <script>  
+    
+    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+    
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
     
    function onloadplatform() 
    {
