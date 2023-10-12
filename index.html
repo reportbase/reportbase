@@ -10,25 +10,15 @@
 <script>
     function onSignIn(googleUser) 
     {
-      var token = googleUser.getAuthResponse().id_token;
+      x
       console.log(token);
     }
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
-
-        if (0)
-        {
-          var profile = gapi.auth2.currentUser.get().getBasicProfile();
-          console.log('ID: ' + profile.getId());
-          console.log('Full Name: ' + profile.getName());
-          console.log('Given Name: ' + profile.getGivenName());
-          console.log('Family Name: ' + profile.getFamilyName());
-          console.log('Image URL: ' + profile.getImageUrl());
-          console.log('Email: ' + profile.getEmail());
-        }
-        
+      var id_token = googleUser.getAuthResponse().id_token;
+  
       var files = document.getElementById('file').files;  
       const file = files[0];
       const form = new FormData();
