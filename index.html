@@ -3,7 +3,7 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <form id="upload">
-<input type="file" id="input"> 
+<input type="file" id="file"> 
 <button type="submit">Upload</button>
 </form>
 <div id="result"></div>
@@ -15,9 +15,9 @@
     {
       event.preventDefault();
       var files = document.getElementById('input').files;  
-      const zip = files[0];
+      const file = files[0];
       const form = new FormData();
-      form.append('zip', zip);
+      form.append('file', file);
 
       const response = await fetch('https://bucket.reportbase5836.workers.dev/bucket1/drop.zip', 
       {
