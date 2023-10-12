@@ -11,9 +11,9 @@
         async function handleCredentialResponse(response) 
         {
           console.log("Encoded JWT ID token: " + response.credential);
-          var response = fetch(`https://reportbase.me/login?token={response.credential}`); 
-           const result = response;
-           console.log(result);
+          var response = await fetch(`https://reportbase.me/login?token={response.credential}`); 
+           
+           console.log(response);
         }
         
         window.onload = function () 
