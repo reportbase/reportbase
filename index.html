@@ -10,12 +10,16 @@
 <script>
         async function handleCredentialResponse(response) 
         {
-          console.log("Encoded JWT ID token: " + response.credential);
-                fetch(`https://reportbase.me/login?token=${response.credential}`)
+                console.log("Encoded JWT ID token: " + response.credential);
+                fetch(`https://reportbase.me/login`, 
+                {
+		        method: 'post',
+			body: json.stringify(response)
+                })
                 .then(function(response) 
                       {
                               if (response.ok)
-                                return response.text()
+                                return response.json()
                                 throw Error(response.statusText);
                       })
                 .then(function(json)
