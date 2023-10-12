@@ -2,16 +2,19 @@
 <body>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-<form id="upload">
+<form id="uploadformdata">
 <input type="file" id="file"> 
-<button type="submit">Upload</button>
+<button type="submit">Upload FormData</button>
 </form>
-<div id="result"></div>
+
+<form id="uploadzip">
+<input type="file" id="file"> 
+<button type="submit">Upload Zip</button>
+</form>
 
 <script>
-    const form = document.getElementById('upload');
-    const resultDiv = document.getElementById('result');
-    form.addEventListener('submit', async event => 
+    const uploadformdata = document.getElementById('uploadformdata');
+    uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
       var files = document.getElementById('file').files;  
@@ -31,6 +34,26 @@
     });
 </script>    
 
+<script>
+    const uploadzip = document.getElementById('uploadzip');
+    uploadzip.addEventListener('submit', async event => 
+    {
+      event.preventDefault();
+      var files = document.getElementById('file').files;  
+      const file = files[0];
+      
+      const response = await fetch('https://bucket.reportbase5836.workers.dev/bucket1/drop.zip', 
+      {
+        method: 'POST',
+        headers:{'Content-Type': 'application/zip'},        
+        body: file
+      });
+
+      const result = await response.text();
+        console.log(result);
+    });
+</script>    
+    
     <div id="g_id_onload"
          data-client_id="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com"
          data-ux_mode="redirect"
