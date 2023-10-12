@@ -11,10 +11,19 @@
         async function handleCredentialResponse(response) 
         {
           console.log("Encoded JWT ID token: " + response.credential);
-          var response = await fetch(`https://reportbase.me/login?token=${response.credential}`); 
-           
-           console.log(response);
-        }
+                fetch(`https://reportbase.me/login?token=${response.credential}`)
+                .then(function(response) 
+                      {
+                              if (response.ok)
+                                return response.text()
+                                throw Error(response.statusText);
+                      })
+                .then(function(json)
+                      {
+                              console.log(json)
+                      })
+                .catch(error => console.log(error));           
+         }
         
         window.onload = function () 
         {
