@@ -3,7 +3,7 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <form id="uploadForm">
-<input type="file" id="zipFileInput"> 
+<input type="file" id="input"> 
 <button type="submit">Upload</button>
 </form>
 <div id="result"></div>
@@ -14,7 +14,7 @@
     form.addEventListener('submit', async event => 
     {
       event.preventDefault();
-      const zip = document.getElementById('zipFileInput').files[0];
+      const zip = document.getElementById('input').files[0];
       const form = new FormData();
       form.append('zip', zip);
 
