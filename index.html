@@ -8,12 +8,17 @@
 </form>
 
 <script>
+    function onSignIn(googleUser) 
+    {
+      var token = googleUser.getAuthResponse().id_token;
+      console.log(token);
+    }
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
 
-        if (gapi.auth2.isSignedIn.get())
+        if (0)
         {
           var profile = gapi.auth2.currentUser.get().getBasicProfile();
           console.log('ID: ' + profile.getId());
