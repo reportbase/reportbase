@@ -7,16 +7,20 @@
 <button type="submit">Upload FormData</button>
 </form>
 
-<form id="uploadzip">
-<input type="file" id="file"> 
-<button type="submit">Upload Zip</button>
-</form>
-
 <script>
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
+
+      var profile = auth2.currentUser.get().getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+        
       var files = document.getElementById('file').files;  
       const file = files[0];
       const form = new FormData();
@@ -27,26 +31,6 @@
         method: 'POST',
         headers:{'Content-Type': 'application/zip'},            
         body: form
-      });
-
-      const result = await response.text();
-        console.log(result);
-    });
-</script>    
-
-<script>
-    const uploadzip = document.getElementById('uploadzip');
-    uploadzip.addEventListener('submit', async event => 
-    {
-      event.preventDefault();
-      var files = document.getElementById('file').files;  
-      const file = files[0];
-      
-      const response = await fetch('https://bucket.reportbase5836.workers.dev/bucket1/drop.zip', 
-      {
-        method: 'POST',
-        headers:{'Content-Type': 'application/zip'},        
-        body: file
       });
 
       const result = await response.text();
