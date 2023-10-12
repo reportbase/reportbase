@@ -8,11 +8,6 @@
 </form>
 
 <script>
-    function onSignIn(googleUser) 
-    {
-      x
-      console.log(token);
-    }
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
@@ -35,13 +30,20 @@
         console.log(result);
     });
 </script>    
-    
-    <div id="g_id_onload"
+
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <div id="g_id_onload"
          data-client_id="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com"
          data-ux_mode="redirect"
-         data-login_uri="https://reportbase.me/login">
-    </div>
-    <div class="g_id_signin" data-type="standard"></div>
-    
+         data-login_uri="https://reportbase.me/login"
+      </div>
+      <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-shape="rectangular"
+         data-logo_alignment="left">
+      </div>
 </body>
 </html>
