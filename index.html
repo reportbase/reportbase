@@ -15,23 +15,26 @@
         
         window.onload = function () 
         {
-          google.accounts.id.initialize({
+          /*
+          google.accounts.id.initialize(
+          {
             client_id: "676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com",
             callback: handleCredentialResponse
           });
+          */
+                
           google.accounts.id.renderButton(
             document.getElementById("buttonDiv"),
-            { theme: "outline", size: "large" }  // customization attributes
+            { theme: "outline", size: "large" }
           );
-          google.accounts.id.prompt(); // also display the One Tap dialog
+          google.accounts.id.prompt(); 
         }
     
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
-      var id_token = googleUser.getAuthResponse().id_token;
-  
+     
       var files = document.getElementById('file').files;  
       const file = files[0];
       const form = new FormData();
