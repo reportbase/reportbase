@@ -1,6 +1,13 @@
 <html>
 <body>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<form id="uploadForm">
+<input type="file" id="zipFileInput"> 
+<button type="submit">Upload</button>
+</form>
+<div id="result"></div>
+
 <script>
     const form = document.getElementById('uploadForm');
     const resultDiv = document.getElementById('result');
@@ -22,10 +29,10 @@
       {
         method: 'POST',
         headers: 
-						{
-						    'Content-Type': 'multipart/form-data'
-						    //'Content-Type': 'application/zip'
-						},        
+	{
+	    'Content-Type': 'multipart/form-data'
+	    //'Content-Type': 'application/zip'
+	},        
         body: formData
       });
 
@@ -41,11 +48,5 @@
     </div>
     <div class="g_id_signin" data-type="standard"></div>
     
-    <form id="uploadForm">
-      <input type="file" id="zipFileInput"> 
-      <button type="submit">Upload</button>
-    </form>
-    <div id="result"></div>
-
 </body>
 </html>
