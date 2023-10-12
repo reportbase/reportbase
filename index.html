@@ -2,19 +2,20 @@
 <body>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-<form id="uploadForm">
+<form id="upload">
 <input type="file" id="input"> 
 <button type="submit">Upload</button>
 </form>
 <div id="result"></div>
 
 <script>
-    const form = document.getElementById('uploadForm');
+    const form = document.getElementById('upload');
     const resultDiv = document.getElementById('result');
     form.addEventListener('submit', async event => 
     {
       event.preventDefault();
-      const zip = document.getElementById('input').files[0];
+      var files = document.getElementById('input').files;  
+      const zip = files[0];
       const form = new FormData();
       form.append('zip', zip);
 
