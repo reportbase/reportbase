@@ -57,8 +57,10 @@
 	      const file = files[n];
 	      const form = new FormData();
 	      form.append('file', file);
+	const response = await fetch('https://uuid.reportbase5836.workers.dev');
+	const uuid = await response.text();
 		    
-	      fetch(`https://bucket.reportbase5836.workers.dev/zips/${file.name}`, 
+	      fetch(`https://bucket.reportbase5836.workers.dev/zips/${uuid}`, 
 	      {
 		method: 'POST',
 		body: form
@@ -71,8 +73,6 @@
                       })
                 .then(function(str)
                       {
-				const response = await fetch('https://uuid.reportbase5836.workers.dev');
-		  		const uuid = await response.text();
                               console.log(str)
                       })
                 .catch(error => console.log(error)); 
