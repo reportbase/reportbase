@@ -51,22 +51,31 @@
     {
       event.preventDefault();
 
-		var files = document.getElementById('file').files;
+	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
 	    {
 	      const file = files[n];
 	      const form = new FormData();
 	      form.append('file', file);
-	
-	      const response = await fetch(`https://bucket.reportbase5836.workers.dev/bucket1/${file.name}`, 
+		    
+	      fetch(`https://bucket.reportbase5836.workers.dev/zips/${file.name}`, 
 	      {
 		method: 'POST',
-		//headers:{'Content-Type': 'application/zip'},            
 		body: form
 	      });
-
-	    	const result = await response.text();
-	    	console.log(result);
+ 		.then(function(response) 
+                      {
+                              if (response.ok)
+                                return response.text()
+                                throw Error(response.statusText);
+                      })
+                .then(function(str)
+                      {
+				const response = await fetch('https://uuid.reportbase5836.workers.dev');
+		  		const uuid = await response.text();
+                              console.log(str)
+                      })
+                .catch(error => console.log(error)); 
 	    }
     });
 </script>    
