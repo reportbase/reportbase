@@ -60,7 +60,7 @@
 	const response = await fetch('https://uuid.reportbase5836.workers.dev');
 	const uuid = await response.text();
 		    
-	      fetch(`https://bucket.reportbase5836.workers.dev/zips/${uuid}`, 
+	      fetch(`https://bucket.reportbase5836.workers.dev/bucket1/${uuid}`, 
 	      {
 		method: 'POST',
 		body: form
