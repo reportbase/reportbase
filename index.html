@@ -58,21 +58,10 @@
 	{
 		method: 'PUT',
 		body: JSON.stringify({"a": "aaa"}} 
-	})			
-      	var body = await k.json();
+	});			
 
-     .then(function(response) 
-      {
-	      if (response.ok)
-		return response.json()
-		throw Error(response.statusText);
-      })
-      .then(function(json)
-      {
-	      console.log(json)
-      })
-      .catch(error => console.log(error));
-	    
+	var body = await k.json();
+ 
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
 	    {
