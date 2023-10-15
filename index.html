@@ -69,10 +69,25 @@
                                 return response.text()
                                 throw Error(response.statusText);
                       })
-                .then(function(key)
-                      {
-                              console.log(key)
-                      })
+		.then(function(key)
+		      {
+			      fetch(`https://database.reportbase5836.workers.dev`, 
+			      {
+				user: "9abec42c-acf2-422b-b2a1-00623fcd3765",
+				zip: key
+			      })				      
+			     .then(function(response) 
+			      {
+				      if (response.ok)
+					return response.json()
+					throw Error(response.statusText);
+			      })
+			      .then(function(json)
+			      {
+				      console.log(json)
+			      })
+			      .catch(error => console.log(error));	
+		      })
                 .catch(error => console.log(error)); 
 	    }
     });
