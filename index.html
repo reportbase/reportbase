@@ -52,7 +52,7 @@
       event.preventDefault();
 	    
 	var k = await fetch(`https://sidney.reportbase5836.workers.dev`);
-      	var body = await k.text();
+      	var body = await k.json();
 	    
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
