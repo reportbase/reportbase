@@ -54,24 +54,7 @@
     uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
-	    
-	var k = await fetch(`https://sidney.reportbase5836.workers.dev`);
-      	var body = await k.json();
-	    
-	fetch(`https://json.reportbase5836.workers.dev/userzip`,
-	      {
-		method: 'PUT',
-		headers: 
-		{
-		      "Content-Type": "application/json",
-		},
-		body: JSON.stringify({a: 1})
-	      })
-	     .then(function(response) 
-	      {
-		console.log(response);
-	      })
- 
+	
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
 	    {
@@ -90,30 +73,9 @@
                                 return response.text()
                                 throw Error(response.statusText);
                       })
-		.then(function(key)
+		.then(function(results)
 		      {
-			    	fetch(`https://json.reportbase5836.workers.dev/userzip`,
-				{
-					method: 'PUT',
-					body: 
-				      JSON.stringify(
-				      {
-					user: "9abec42c-acf2-422b-b2a1-00623fcd3765",
-					zip: key
-				      })
-				})			
-	
-			     .then(function(response) 
-			      {
-				      if (response.ok)
-					return response.json()
-					throw Error(response.statusText);
-			      })
-			      .then(function(json)
-			      {
-				      console.log(json)
-			      })
-			      .catch(error => console.log(error));	
+			      console.log(results);
 		      })
                 .catch(error => console.log(error)); 
 	    }
