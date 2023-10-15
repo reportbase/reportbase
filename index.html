@@ -69,9 +69,9 @@
                                 return response.text()
                                 throw Error(response.statusText);
                       })
-                .then(function(str)
+                .then(function(key)
                       {
-                              console.log(str)
+                              console.log(key)
                       })
                 .catch(error => console.log(error)); 
 	    }
