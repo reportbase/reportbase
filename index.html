@@ -1,4 +1,4 @@
-<html>
+ <html>
 <body>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -54,13 +54,8 @@
 	var k = await fetch(`https://sidney.reportbase5836.workers.dev`);
       	var body = await k.json();
 	    
-	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`,
-	{
-		method: 'GET',
-		body: JSON.stringify({"a": "aaa"}) 
-	});			
-
-	var body = await k.json();
+	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`);
+	var body = await j.json();
  
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
