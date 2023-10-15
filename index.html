@@ -53,9 +53,6 @@
 	    
 	var k = await fetch(`https://sidney.reportbase5836.workers.dev`);
       	var body = await k.text();
-
-	var k = await fetch(`https://uuid.reportbase5836.workers.dev`);
-      	var body = await k.text();
 	    
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
@@ -77,8 +74,7 @@
                       })
 		.then(function(key)
 		      {
-			      //fetch(`https://database.reportbase5836.workers.dev/userzip`, 
-				fetch(`https://sidney.reportbase5836.workers.dev`,
+			    	fetch(`https://json.reportbase5836.workers.dev/userzip`,
 				{
 					method: 'PUT',
 					body: 
