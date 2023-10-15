@@ -58,7 +58,7 @@
 	var k = await fetch(`https://sidney.reportbase5836.workers.dev`);
       	var body = await k.json();
 	    
-	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`,
+	fetch(`https://json.reportbase5836.workers.dev/userzip`,
 	      {
 		method: 'PUT',
 		headers: 
@@ -66,8 +66,11 @@
 		      "Content-Type": "application/json",
 		},
 		body: JSON.stringify({a: 1})
-	      });
-	var body = await j.text();
+	      })
+	     .then(function(response) 
+	      {
+		console.log(response);
+	      })
  
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
