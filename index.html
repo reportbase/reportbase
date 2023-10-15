@@ -15,7 +15,7 @@
                 console.log("Encoded JWT ID token: " + response.credential);
                 fetch(`https://reportbase.me/login`, 
                 {
-		        method: 'GET',
+		        method: 'POST',
 			body: JSON.stringify(response)
                 })
                 .then(function(response) 
@@ -56,7 +56,7 @@
 	    
 	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`,
 	{
-		method: 'PUT',
+		method: 'GET',
 		body: 'aaa'
 	});	
 	var body = await j.text();
