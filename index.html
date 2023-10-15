@@ -71,11 +71,15 @@
                       })
 		.then(function(key)
 		      {
-			      fetch(`https://database.reportbase5836.workers.dev`, 
-			      {
-				user: "9abec42c-acf2-422b-b2a1-00623fcd3765",
-				zip: key
-			      })				      
+			      fetch(`https://database.reportbase5836.workers.dev/userzip`, 
+				{
+					method: 'PUT',
+					body: 
+				      JSON.stringify({
+					user: "9abec42c-acf2-422b-b2a1-00623fcd3765",
+					zip: key
+				      })
+				    })				      
 			     .then(function(response) 
 			      {
 				      if (response.ok)
