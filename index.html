@@ -74,17 +74,17 @@
                       })
 		.then(function(key)
 		      {
-			    	fetch(`https://json.reportbase5836.workers.dev/userzip`)
-					/*,
+			    	fetch(`https://json.reportbase5836.workers.dev/userzip`,
 				{
 					method: 'PUT',
 					body: 
-				      JSON.stringify({
+				      JSON.stringify(
+				      {
 					user: "9abec42c-acf2-422b-b2a1-00623fcd3765",
 					zip: key
 				      })
-				    })			
-	*/
+				})			
+	
 			     .then(function(response) 
 			      {
 				      if (response.ok)
