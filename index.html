@@ -55,7 +55,7 @@
       	var body = await k.json();
 	    
 	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`);
-	var body = await j.json();
+	var body = await j.text();
  
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
