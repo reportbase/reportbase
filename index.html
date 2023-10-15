@@ -54,7 +54,11 @@
 	var k = await fetch(`https://sidney.reportbase5836.workers.dev`);
       	var body = await k.json();
 	    
-	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`);	
+	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`,
+	      {
+		method: 'PUT',
+		body: "aaaa"
+	      });
 	var body = await j.text();
  
 	var files = document.getElementById('file').files;
