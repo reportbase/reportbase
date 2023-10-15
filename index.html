@@ -65,6 +65,8 @@
 	      fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
 	      {
 		method: 'POST',
+		filename: file.name.split('.')[0],
+		email: "reportbase@gmail.com",
 		body: form
 	      })
  		.then(function(response) 
