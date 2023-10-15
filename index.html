@@ -50,7 +50,8 @@
     uploadformdata.addEventListener('submit', async event => 
     {
       event.preventDefault();
-
+	var json = await fetch(`https://json.reportbase5836.workers.dev/userzip`);
+      
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
 	    {
@@ -58,8 +59,7 @@
 	      const form = new FormData();
 	      form.append('file', file);
 
-	      //fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
-		fetch(`https://sidney.reportbase5836.workers.dev`,    
+	      fetch(`https://database.reportbase5836.workers.dev/userzip`,
 	      {
 		method: 'POST',
 		body: form
