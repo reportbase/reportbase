@@ -56,7 +56,7 @@
 	    
 	var j = await fetch(`https://json.reportbase5836.workers.dev/userzip`,
 	      {
-		method: 'PUT',
+		method: 'GET',
 		body: JSON.stringify({a: 1})
 	      });
 	var body = await j.text();
