@@ -45,6 +45,13 @@ function gridshow(results)
 			var result = results[n];
 			data.push([result.id, result.title, null]);
 		}
+
+var data = Array(5).fill().map(x => [
+    "dd",
+    "11",
+    null
+  ]) ;
+		      
 		new gridjs.Grid(
 		{
 		  columns: 
