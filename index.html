@@ -58,9 +58,9 @@ var data = Array(5).fill().map(x => [
 		[
 			{
 			name: 'Title',
-			formatter: function(_, row)
+			formatter: function(cell, row)
 				{
-					console.log(row)
+					console.log(row.cells[0].data, row.cells[1].data)
 				}
 				//	html(`<a href=https://zip-view.pages.dev/?r2=${row.cells[0].data}>${row.cells[1].data}</a>`)
 			}
