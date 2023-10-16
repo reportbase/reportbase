@@ -25,6 +25,10 @@
 <script>
 function gridshow(results)
 {
+    	var email = document.getElementById("name").value;
+	if (!email)
+		return;
+
 	var data = []
 	for (var n = 0; n < results.length; ++n)
 	{
@@ -33,9 +37,6 @@ function gridshow(results)
 		data.push(k);
 	}
 	
-    	var email = document.getElementById("name").value;
-	if (!email)
-		return;
 	fetch(`https://bucket.reportbase5836.workers.dev/${email}`)
 	.then(function(response) 
 	      {
