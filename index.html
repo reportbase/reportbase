@@ -58,11 +58,7 @@ var data = Array(5).fill().map(x => [
 		[
 			{
 			name: 'Title',
-			formatter: function(cell, row)
-				{
-					return html(`<a href=https://zip-view.pages.dev/?r2=${row.cells[0].data}>${row.cells[1].data}</a>`)
-				}
-			}
+			formatter: (_, row) => html(`<a href='mailto:${row.cells[1].data}'>Email</a>`)	
 		],
 			pagination: true,
 			search: true,
