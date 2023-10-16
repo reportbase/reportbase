@@ -65,7 +65,11 @@ var data = Array(5).fill().map(x => [
 			search: true,
 			sort: true,
 			resizable: true,	
-		  	data: data
+		  	data: Array(5).fill().map(x => [
+    faker.name.findName(),
+    faker.internet.email(),
+    null
+  ]
 		}).render(document.getElementById("wrapper"));
 	      })
 	.catch(error => console.log(error));
