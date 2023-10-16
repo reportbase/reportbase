@@ -42,16 +42,25 @@ function gridshow(results)
 		for (var n = 0; n < results.length; ++n)
 		{
 			var k = [];
-			k.push(results[n].title);
+			var result = results[n];
+			k.push({"id:": res.id, "title": res.title});
 			data.push(k);
 		}
-		new gridjs.Grid({
-		  columns: ["Title"],
-		pagination: true,
-		search: true,
-		sort: true,
-		resizable: true,	
-		  data: data
+		new gridjs.Grid(
+		{
+		  columns: 
+		[
+		      { 
+			name: 'Title',
+			formatter: (cell) => html(
+				`<a href=https://zip-view.pages.dev/?r2=${cell.id}>{$cell.title}</a>`)
+		      }
+		],
+			pagination: true,
+			search: true,
+			sort: true,
+			resizable: true,	
+		  	data: data
 		}).render(document.getElementById("wrapper"));
 	      })
 	.catch(error => console.log(error));
