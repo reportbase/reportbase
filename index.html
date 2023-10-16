@@ -21,10 +21,7 @@
     galleryform.addEventListener('submit', async event => 
     {
 	    var email = document.getElementById("name").value;
-      fetch(`https://bucket.reportbase5836.workers.dev/${email}`,
-      {
-	'method': 'USER'
-      })
+      fetch(`https://bucket.reportbase5836.workers.dev/${email}`)
 	.then(function(response) 
 	      {
 		      if (response.ok)
