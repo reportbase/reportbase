@@ -10,42 +10,7 @@
 </form>
 
 <script>
-        async function handleCredentialResponse(response) 
-        {
-                console.log("Encoded JWT ID token: " + response.credential);
-                fetch(`https://reportbase.me/login`, 
-                {
-		        method: 'POST',
-			body: JSON.stringify(response)
-                })
-                .then(function(response) 
-                      {
-                              if (response.ok)
-                                return response.json()
-                                throw Error(response.statusText);
-                      })
-                .then(function(json)
-                      {
-                              console.log(json)
-                      })
-                .catch(error => console.log(error));           
-         }
-        
-        window.onload = function () 
-        {
-          google.accounts.id.initialize(
-          {
-                /*
-            client_id: "676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "large" }
-          );
-	  google.accounts.id.prompt(); 
-        */
-          }
+
     
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
