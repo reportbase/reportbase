@@ -20,15 +20,15 @@
 </form>
 <p>
 
+	
 <div id="wrapper"></div>
 <script>
-
-    const galleryform = document.getElementById('galleryform');
-    galleryform.addEventListener('submit', async event => 
-    {
-	    event.preventDefault();
-	    var email = document.getElementById("name").value;
-      fetch(`https://bucket.reportbase5836.workers.dev/${email}`)
+function gridshow()
+{
+    	var email = document.getElementById("name").value;
+	if (!email)
+		return;
+	fetch(`https://bucket.reportbase5836.workers.dev/${email}`)
 	.then(function(response) 
 	      {
 		      if (response.ok)
@@ -52,7 +52,18 @@
 		  ]
 		}).render(document.getElementById("wrapper"));
 	      })
-	.catch(error => console.log(error)); 
+	.catch(error => console.log(error));
+}
+gridshow();
+</script>
+	
+<script>
+
+    const galleryform = document.getElementById('galleryform');
+    galleryform.addEventListener('submit', async event => 
+    {
+	    event.preventDefault();
+	    gridshow(); 
     })
 
     const uploadformdata = document.getElementById('uploadformdata');
@@ -60,9 +71,8 @@
     {
       event.preventDefault();
 	var email = document.getElementById("name").value;
-	    //todo: must be valid email
-	    if (!email)
-		    return;
+    if (!email)
+	    return;
 	    
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
