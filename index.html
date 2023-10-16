@@ -43,7 +43,7 @@ function gridshow(results)
 		{
 			var k = [];
 			var result = results[n];
-			data.push({"id": result.id, "title": result.title});
+			data.push([result.id, result.title]);
 		}
 		new gridjs.Grid(
 		{
