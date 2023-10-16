@@ -41,6 +41,9 @@
     {
       event.preventDefault();
 	var email = document.getElementById("name").value;
+	    //todo: must be valid email
+	    if (!email)
+		    return;
 	    
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
