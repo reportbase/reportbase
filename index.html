@@ -50,6 +50,8 @@
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
+	    google.accounts.id.prompt();
+	    return;
       event.preventDefault();
 	var email = document.getElementById("name").value;
 	    
