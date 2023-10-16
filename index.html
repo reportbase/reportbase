@@ -43,15 +43,18 @@ function gridshow(results)
 		{
 			var k = [];
 			var result = results[n];
-			var j = `<a href=https://zip-view.pages.dev/?r2=${result.id}>${result.title}</a>`;
-			k.push(j); 
+			k.push(result.id);
+			k.push(result.title);
 			data.push(k);
 		}
 		new gridjs.Grid(
 		{
 		  columns: 
 		[
-			'Title'
+			{
+			name: 'Title',
+			formatter: (_, row) => html(`<a href=https://zip-view.pages.dev/?r2=${row.cells[0].data}>${row.cells[1].data}</a>`)
+			}
 		],
 			pagination: true,
 			search: true,
