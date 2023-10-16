@@ -29,7 +29,7 @@ function gridshow(results)
 	if (!email)
 		return;
 	
-	fetch(`https://bucket.reportbase5836.workers.dev/${email}`)
+	fetch(`https://bucket.reportbase5836.workers.dev/zips/${email}`)
 	.then(function(response) 
 	      {
 		      if (response.ok)
