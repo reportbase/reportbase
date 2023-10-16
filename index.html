@@ -28,14 +28,6 @@ function gridshow(results)
     	var email = document.getElementById("name").value;
 	if (!email)
 		return;
-
-	var data = []
-	for (var n = 0; n < results.length; ++n)
-	{
-		var k = [];
-		k.push(results[n].title);
-		data.push(k);
-	}
 	
 	fetch(`https://bucket.reportbase5836.workers.dev/${email}`)
 	.then(function(response) 
@@ -46,6 +38,13 @@ function gridshow(results)
 	      })
 	.then(function(results)
 	      {
+		var data = []
+		for (var n = 0; n < results.length; ++n)
+		{
+			var k = [];
+			k.push(results[n].title);
+			data.push(k);
+		}
 		new gridjs.Grid({
 		  columns: ["Title"],
 		pagination: true,
