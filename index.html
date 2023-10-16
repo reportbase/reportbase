@@ -20,6 +20,23 @@
     const galleryform = document.getElementById('galleryform');
     galleryform.addEventListener('submit', async event => 
     {
+	    var email = document.getElementById("name").value;
+      fetch(`https://bucket.reportbase5836.workers.dev/${email}`,
+      {
+	'method': 'USER'
+      })
+	.then(function(response) 
+	      {
+		      if (response.ok)
+			return response.text()
+			throw Error(response.statusText);
+	      })
+	.then(function(results)
+	      {
+		      console.log(results);
+	      })
+	.catch(error => console.log(error)); 
+    }
 
     }
     
