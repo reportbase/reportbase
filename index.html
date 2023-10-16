@@ -2,24 +2,30 @@
 <body>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-<form>  
-<input type="file" id="file" multiple="multiple"><br>
-<button type="submit">Upload FormData</button><br>
+<form id=uploadformdata>  
+<input type="file" id="file" multiple="multiple">
+<button type="submit">Upload</button>
 </form>
-
-<form> 	
+<br>
+	
+<form id=galleryform> 	
 <label for="email">Email:</label><br>
-<input type="text" id="name" name="name"><br>
+<input type="text" id="name" name="name">
+<button type="submit">Show</button>
 </form>
-
+<p>
+	
 <script>
 
+    const galleryform = document.getElementById('galleryform');
+    galleryform.addEventListener('submit', async event => 
+    {
+
+    }
     
     const uploadformdata = document.getElementById('uploadformdata');
     uploadformdata.addEventListener('submit', async event => 
     {
-	    google.accounts.id.prompt();
-	    return;
       event.preventDefault();
 	var email = document.getElementById("name").value;
 	    
