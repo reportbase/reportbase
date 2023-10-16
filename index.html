@@ -53,7 +53,11 @@ function gridshow(results)
 		[
 			{
 			name: 'Title',
-			formatter: (_, row) => html(`<a href=https://zip-view.pages.dev/?r2=${row.cells[0].data}>${row.cells[1].data}</a>`)
+			formatter: function(_, row)
+				{
+					console.log(row)
+				}
+				//	html(`<a href=https://zip-view.pages.dev/?r2=${row.cells[0].data}>${row.cells[1].data}</a>`)
 			}
 		],
 			pagination: true,
