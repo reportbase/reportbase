@@ -53,22 +53,36 @@
       </div>	
 
 	<form id=galleryform> 	
-	<label for="email">Email:</label><br>
 	<input type="text" id="name" name="name">
 	<button type="submit">Show</button>
 	</form>
 	      
   </div>
 </section>
-	  
+<script>
+ function dropHandler(ev) 
+ {
+      console.log('Files dropped');
+      ev.preventDefault();
+
+      if (ev.dataTransfer.files) {
+        [...ev.dataTransfer.files].forEach(file => {
+          console.log(file.name);
+        })
+      }
+    }
+
+    function dragOverHandler(ev) 
+    {
+      console.log('File(s) in drop zone'); 
+      ev.preventDefault();
+    }	
+</script>
+<div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+    <p>Drag and drop files here</p>
+  </div>	  
   <section class="section">
-    <div class="container">
-    </div>
-  </section>
-	  
-  <section class="section">
-    <div class="container">
-	    
+   	    
 <div id="wrapper"></div>
 <script>
 function gridshow(results)
@@ -183,7 +197,6 @@ gridshow();
 
 </script>    
 	
-    </div>
   </section>
   </body>
 </html>
