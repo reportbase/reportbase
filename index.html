@@ -45,25 +45,27 @@ function gridshow(results)
 			var result = results[n];
 			data.push([result.id, result.title, null]);
 		}
-		new gridjs.Grid({
-		  columns: [
-		      { 
-		        name: 'Name',
-		        formatter: (cell) => html(`<b>${cell}</b>`)
-		      },
-		      'Email',
-		      { 
-		        name: 'Actions',
-		        formatter: (_, row) => html(`<a href='mailto:${row.cells[1].data}'>Edmail</a>`)
-		      },
-		   ],
-		  data: Array(5).fill().map(x => [
-		    faker.name.findName(),
-		    faker.internet.email(),
-		    null
-		  ])
-		}).render(document.getElementById("wrapper"));
-	      })
+
+const grid = new Grid({
+  columns: [
+      { 
+        name: 'Name',
+        formatter: (cell) => html(`<b>${cell}</b>`)
+      },
+      'Email',
+      { 
+        name: 'Actions',
+        formatter: (_, row) => html(`<a href='mailto:${row.cells[1].data}'>Email</a>`)
+      },
+   ],
+  data: [
+    ['John', 'john@example.com', '(353) 01 222 3333'],
+    ['Mark', 'mark@gmail.com',   '(01) 22 888 4444']
+  ]
+});
+		      
+		grid.render(document.getElementById("wrapper"));
+	})
 	.catch(error => console.log(error));
 }
 gridshow();
