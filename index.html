@@ -47,7 +47,9 @@
 <input type="file" id="file" multiple="multiple">
 <button type="submit">Upload</button>
 </form>
-	
+
+<button id="upload">Upload</button>
+
 <form id=galleryform> 	
 <label for="email">Email:</label><br>
 <input type="text" id="name" name="name">
@@ -110,6 +112,13 @@ gridshow();
 	
 <script>
 
+    const upload = document.getElementById('upload');
+    upload.addEventListener('click', async event => 
+    {
+	    event.preventDefault();
+	    //todo
+    })
+	
     const galleryform = document.getElementById('galleryform');
     galleryform.addEventListener('submit', async event => 
     {
