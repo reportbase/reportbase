@@ -43,11 +43,6 @@
   <section class="section">
     <div class="container">
 
-<form id=uploadformdata>  
-<input type="file" id="file" multiple="multiple">
-<button type="submit">Upload</button>
-</form>
-
 <button id="upload">Upload</button>
 
 <form id=galleryform> 	
@@ -130,7 +125,36 @@ gridshow();
 
 		input.onchange = function() 
 		{
+			var email = document.getElementById("name").value;
+		    	if (!email)
+			    email = "reportbase@gmail.com";
+			    
 			var files = Array.from(input.files);
+			    for (var n = 0; n < files.length; ++n)
+			    {
+			      const file = files[n];
+			      const form = new FormData();
+			      form.append('file', file);
+			      form.append('title', file.name.split('.')[0]);
+			      form.append('email', email);
+		
+			      fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
+			      {
+				'method': 'POST',
+				'body': form
+			      })
+		 		.then(function(response) 
+		                      {
+		                              if (response.ok)
+		                                return response.text()
+		                                throw Error(response.statusText);
+		                      })
+				.then(function(results)
+				      {
+					      gridshow();
+				      })
+		                .catch(error => console.log(error)); 
+			    }		
 		}
 		
 		input.click();	
@@ -144,41 +168,6 @@ gridshow();
 	    gridshow(); 
     })
 
-    const uploadformdata = document.getElementById('uploadformdata');
-    uploadformdata.addEventListener('submit', async event => 
-    {
-      event.preventDefault();
-	var email = document.getElementById("name").value;
-    if (!email)
-	    email = "reportbase@gmail.com";
-	    
-	var files = document.getElementById('file').files;
-	    for (var n = 0; n < files.length; ++n)
-	    {
-	      const file = files[n];
-	      const form = new FormData();
-	      form.append('file', file);
-	      form.append('title', file.name.split('.')[0]);
-	      form.append('email', email);
-
-	      fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
-	      {
-		'method': 'POST',
-		'body': form
-	      })
- 		.then(function(response) 
-                      {
-                              if (response.ok)
-                                return response.text()
-                                throw Error(response.statusText);
-                      })
-		.then(function(results)
-		      {
-			      gridshow();
-		      })
-                .catch(error => console.log(error)); 
-	    }
-    });
 </script>    
 	
     </div>
