@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>Zip View</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 <style>
 div.dropzone
@@ -48,7 +48,7 @@ div.dropzone
 <section class="hero is-info">
   <div class="hero-body">
     <p class="title">
-      Image Galleries
+      Zip View
     </p>
     <p class="subtitle">
       Uploads/Downloads
@@ -64,31 +64,24 @@ div.dropzone
 <script>
 window.addEventListener("dragenter", function(e)
 {
-    lastTarget = e.target; // cache the last target here
-    // unhide our dropzone overlay
+    lastTarget = e.target; 
     document.querySelector(".dropzone").style.visibility = "";
     document.querySelector(".dropzone").style.opacity = 1;
 });
 
 window.addEventListener("dragleave", function(e)
 {
-    // this is the magic part. when leaving the window,
-    // e.target happens to be exactly what we want: what we cached
-    // at the start, the dropzone we dragged into.
-    // so..if dragleave target matches our cache, we hide the dropzone.
-    // `e.target === document` is a workaround for Firefox 57
     if(e.target === lastTarget || e.target === document)
     {
         document.querySelector(".dropzone").style.visibility = "hidden";
         document.querySelector(".dropzone").style.opacity = 0;
     }
-});
-	
+});	
  
 </script>
 <article id=upload class="panel is-info">
-<div style="text-align: center" class="panel-block is-primary">
-    Upload Zip(s) / Click Here / Drag and Drop
+<div style="text-align: center" class="is-primary">
+    Upload Zip(s) (Tap or Drag and Drop)
 </div>
 </article>
 	  
@@ -144,7 +137,6 @@ gridshow();
 </script>
 	
 <script>
-
     const upload = document.getElementById('upload');
     upload.addEventListener('click', async event => 
     {
