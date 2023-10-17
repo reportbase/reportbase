@@ -38,9 +38,7 @@ function gridshow(results)
 			throw Error(response.statusText);
 	      })
 	.then(function(results)
-	      {
-
-		      
+	      {      
 		var str = "<div class='pure-g'>"
 		for (var n = 0; n < results.length; ++n)
 		{
@@ -96,7 +94,7 @@ gridshow();
                       })
 		.then(function(results)
 		      {
-			      console.log(results);
+			      gridshow();
 		      })
                 .catch(error => console.log(error)); 
 	    }
