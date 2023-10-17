@@ -56,8 +56,7 @@ function gridshow(results)
 	      })
 	.then(function(results)
 	      {      
-		var str = `<div class="tile is-ancestor">
-     			<div class="tile is-4by3">`;     
+		var str = ``;     
 		for (var n = 0; n < results.length; ++n)
 		{
 			var result = results[n];
@@ -94,7 +93,6 @@ function gridshow(results)
 			</div>
    		}
 		      
-		str += "</div></div>"
 		document.getElementById("wrapper").innerHTML = str;      
 	})
 	.catch(error => console.log(error));
