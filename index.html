@@ -56,7 +56,7 @@ function gridshow(results)
 	      })
 	.then(function(results)
 	      {      
-		var str = `<article class="media">`;     
+		var str = `<div class="tile">`;     
 		for (var n = 0; n < results.length; ++n)
 		{
 			var result = results[n];
@@ -92,7 +92,7 @@ function gridshow(results)
 			</div>`
 		}
 		      
-		str += "</article>"
+		str += "</div>"
 		document.getElementById("wrapper").innerHTML = str;      
 	})
 	.catch(error => console.log(error));
