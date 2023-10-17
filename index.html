@@ -40,10 +40,10 @@ function gridshow(results)
 		for (var n = 0; n < results.length; ++n)
 		{
 			var result = results[n];
-			str += `<a href='https://zip-view.pages.dev/?r2=${result.id}'>${result.title}</a>`;
+			str += `<a href='https://zip-view.pages.dev/?r2=${result.id}'>${result.title}</a><p>`;
 		}
 
-		document.getElementById("wrapper") = str;      
+		document.getElementById("wrapper").innerHTML = str;      
 	})
 	.catch(error => console.log(error));
 }
