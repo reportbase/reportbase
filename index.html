@@ -53,18 +53,15 @@ function gridshow(results)
 	      })
 	.then(function(results)
 	      {      
-		var str = "<div>"
+		var str = `<article class="media">`;     
 		for (var n = 0; n < results.length; ++n)
 		{
 			var result = results[n];
-			str += "<div>";
-			str += "</div>";	
-
 			str += `<div class="card">
 			  <div class="card-image">
 			    <figure class="image is-4by3">
 			      <a href='https://zip-view.pages.dev/?r2=${result.id}'>${result.title}'>
-			      	<img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+			      	<img width=640 height=640 src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
 	  		      </a>
 			    </figure>
 			  </div>
@@ -92,7 +89,7 @@ function gridshow(results)
 			</div>`
 		}
 		      
-		str += "</div>"
+		str += "</article>"
 		document.getElementById("wrapper").innerHTML = str;      
 	})
 	.catch(error => console.log(error));
