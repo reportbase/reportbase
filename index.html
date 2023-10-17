@@ -60,7 +60,9 @@ function gridshow(results)
 		for (var n = 0; n < results.length; ++n)
 		{
 			var result = results[n];
-			str += `<div class="card">
+			str += `
+   			<div class="tile">
+   			<div class="card">
 			  <div class="card-image">
 			    <figure class="image is-4by3">
 			      <a href='https://zip-view.pages.dev/?r2=${result.id}'>${result.title}'>
@@ -89,7 +91,8 @@ function gridshow(results)
 			      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
 			    </div>
 			  </div>
-			</div>`
+			</div>
+   			</div>`
 		}
 		      
 		str += "</div>"
