@@ -45,31 +45,23 @@ function gridshow(results)
 			var result = results[n];
 			data.push([result.id, result.title, null]);
 		}
-
-var data = Array(5).fill().map(x => [
-    "dd",
-    "11",
-    null
-  ]) ;
-		      
-		new gridjs.Grid(
-		{
-		  columns: 
-		[
-			{
-			name: 'Title',
-			formatter: (_, row) => html(`<a href='mailto:${row.cells[1].data}'>Email</a>`)	
-			}
-		],
-			pagination: true,
-			search: true,
-			sort: true,
-			resizable: true,	
-		  	data: Array(5).fill().map(x => [
-    "aaaa",
-    "a@d.com",
-    null
-  ])
+		const grid = new gridjs.Grid({
+		  columns: [
+		      { 
+		        name: 'Name',
+		        formatter: (cell) => html(`<b>${cell}</b>`)
+		      },
+		      'Email',
+		      { 
+		        name: 'Actions',
+		        formatter: (_, row) => html(`<a href='mailto:${row.cells[1].data}'>Edmail</a>`)
+		      },
+		   ],
+		  data: Array(5).fill().map(x => [
+		    faker.name.findName(),
+		    faker.internet.email(),
+		    null
+		  ])
 		}).render(document.getElementById("wrapper"));
 	      })
 	.catch(error => console.log(error));
