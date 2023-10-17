@@ -65,7 +65,7 @@ function gridshow(results)
 {
     	var email = document.getElementById("name").value;
 	if (!email)
-		return;
+		email = "reportbase@gmail.com";
 	
 	fetch(`https://bucket.reportbase5836.workers.dev/zips/${email}`)
 	.then(function(response) 
@@ -123,7 +123,7 @@ gridshow();
       event.preventDefault();
 	var email = document.getElementById("name").value;
     if (!email)
-	    return;
+	    email = "reportbase@gmail.com";
 	    
 	var files = document.getElementById('file').files;
 	    for (var n = 0; n < files.length; ++n)
