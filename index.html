@@ -58,9 +58,7 @@ div.dropzone
 	<input type="text" id="name" name="name">
 	<button type="submit">Show</button>
 	</form>
-
-	<button style="align:center" id="upload">Upload</button>
-	      
+    
   </div>
 </section>
 <script>
@@ -88,10 +86,15 @@ window.addEventListener("dragleave", function(e)
 	
  
 </script>
+<article class="panel is-info">
+<p class="panel-heading">
+    Upload Zip(s) / Click Here / Drag and Drop
+</p>
+</article>
+	  
 <section class="section">
-   	    
+
 <div id="wrapper"></div>
-<div style="visibility:hidden; opacity:0" class="dropzone"></div>	  
 <script>
 function gridshow(results)
 {
@@ -206,6 +209,8 @@ gridshow();
 </script>    
 	
   </section>
+<div style="visibility:hidden; opacity:0" class="dropzone"></div>	  
+
   </body>
 </html>
 
