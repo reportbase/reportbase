@@ -115,8 +115,26 @@ gridshow();
     const upload = document.getElementById('upload');
     upload.addEventListener('click', async event => 
     {
-	    event.preventDefault();
-	    //todo
+	event.preventDefault();
+	var input = document.createElement("input");
+	input.type = "file";
+	input.multiple = true;
+	input.accept = ".zip,.cbz,.json,.png,.jpeg,.jpg,.webp,.gif,.avif";
+	return new Promise(function(resolve) 
+	{
+		document.activeElement.onfocus = function() 
+		{
+			document.activeElement.onfocus = null;
+			setTimeout(resolve, 500);
+		};
+
+		input.onchange = function() 
+		{
+			var files = Array.from(input.files);
+		}
+		
+		input.click();	
+	});
     })
 	
     const galleryform = document.getElementById('galleryform');
