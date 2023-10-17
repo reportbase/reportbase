@@ -1,11 +1,20 @@
+<!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">	
-<head>
-</head>
-	
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-	
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Hello World
+      </h1>
+      <p class="subtitle">
+
 <form id=uploadformdata>  
 <input type="file" id="file" multiple="multiple">
 <button type="submit">Upload</button>
@@ -18,8 +27,7 @@
 <button type="submit">Show</button>
 </form>
 <p>
- 
-	
+
 <div id="wrapper"></div>
 <script>
 function gridshow(results)
@@ -98,6 +106,10 @@ gridshow();
 	    }
     });
 </script>    
-
-</body>
+	
+      </p>
+    </div>
+  </section>
+  </body>
 </html>
+
