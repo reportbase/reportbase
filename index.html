@@ -6,6 +6,22 @@
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 <style>
+div.dropzone
+{
+    /* positions to point 0,0 - required for z-index */
+    position: fixed; top: 0; left: 0; 
+    /* above all elements, even if z-index is used elsewhere
+       it can be lowered as needed, but this value surpasses
+       all elements when used on YouTube for example. */
+    z-index: 9999999999;               
+    /* takes up 100% of page */
+    width: 100%; height: 100%;         
+    /* dim the page with 50% black background when visible */
+    background-color: rgba(0,0,0,0.5);
+    /* a nice fade effect, visibility toggles after 175ms, opacity will animate for 175ms. note display:none cannot be animated.  */
+    transition: visibility 175ms, opacity 175ms;
+}	
+	
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -60,30 +76,34 @@
   </div>
 </section>
 <script>
- function dropHandler(ev) 
- {
-      console.log('Files dropped');
-      ev.preventDefault();
+window.addEventListener("dragenter", function(e)
+{
+    lastTarget = e.target; // cache the last target here
+    // unhide our dropzone overlay
+    document.querySelector(".dropzone").style.visibility = "";
+    document.querySelector(".dropzone").style.opacity = 1;
+});
 
-      if (ev.dataTransfer.files) {
-        [...ev.dataTransfer.files].forEach(file => {
-          console.log(file.name);
-        })
-      }
-    }
-
-    function dragOverHandler(ev) 
+window.addEventListener("dragleave", function(e)
+{
+    // this is the magic part. when leaving the window,
+    // e.target happens to be exactly what we want: what we cached
+    // at the start, the dropzone we dragged into.
+    // so..if dragleave target matches our cache, we hide the dropzone.
+    // `e.target === document` is a workaround for Firefox 57
+    if(e.target === lastTarget || e.target === document)
     {
-      console.log('File(s) in drop zone'); 
-      ev.preventDefault();
-    }	
+        document.querySelector(".dropzone").style.visibility = "hidden";
+        document.querySelector(".dropzone").style.opacity = 0;
+    }
+});
+	
+ 
 </script>
-<div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-    <p>Drag and drop files here</p>
-  </div>	  
-  <section class="section">
+< <section class="section">
    	    
 <div id="wrapper"></div>
+<div style="visibility:hidden; opacity:0" class="dropzone"></div>	  
 <script>
 function gridshow(results)
 {
