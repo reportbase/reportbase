@@ -100,7 +100,8 @@ function uploadzips(files)
 
 window.addEventListener("drop", function(e)
 {
-    console.log(e)
+	const files = e.dataTransfer.files;
+    uploadzips(files);
 });
 	
 window.addEventListener("dragenter", function(e)
