@@ -57,8 +57,8 @@ div.dropzone
 
 	<form id=galleryform> 	
 	<input type="text" id="name" name="name">
-	<button type="submit">Show</button>
-	<button id=upload type="submit">Upload</button>
+	<button type="submit" class="button is-dark is-medium">Show</button>	
+	<button id=upload type="submit" class="button is-dark is-medium">Upload</button>
 	</form>
     
   </div>
@@ -98,9 +98,9 @@ function uploadzips(files)
 	
 } 
 
-const dropZone = document.querySelector('body');
-dropZone.addEventListener('drop', (e) => 
+document.body.addEventListener('drop', (e) => 
 {
+	//todo
         document.querySelector(".dropzone").style.visibility = "hidden";
         document.querySelector(".dropzone").style.opacity = 0;
 	const files = e.dataTransfer.files;
