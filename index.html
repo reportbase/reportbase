@@ -49,7 +49,7 @@ div.dropzone
 <section class="hero is-info">
   <div class="hero-body">
     <p class="title">
-      Zip View
+      zip-view
     </p>
     <p class="subtitle">
       Uploads/Downloads
@@ -64,7 +64,7 @@ div.dropzone
   </div>
 </section>
 <script>
-function uploadzips()
+function uploadzips(input)
 {
 	var email = document.getElementById("name").value;
 	if (!email)
@@ -191,7 +191,7 @@ gridshow();
 
 		input.onchange = function(e) 
 		{
-			uploadzips()
+			uploadzips(e)
 		}
 		
 		input.click();	
