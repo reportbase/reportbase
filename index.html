@@ -64,13 +64,12 @@ div.dropzone
   </div>
 </section>
 <script>
-function uploadzips(input)
+function uploadzips(files)
 {
 	var email = document.getElementById("name").value;
 	if (!email)
 	    email = "reportbase@gmail.com";
 	    
-	var files = Array.from(input.files);
 	    for (var n = 0; n < files.length; ++n)
 	    {
 	      const file = files[n];
@@ -189,9 +188,10 @@ gridshow();
 			setTimeout(resolve, 500);
 		};
 
-		input.onchange = function(e) 
+		input.onchange = function() 
 		{
-			uploadzips(e)
+			var files = Array.from(input.files);
+			uploadzips(files)
 		}
 		
 		input.click();	
