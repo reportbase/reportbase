@@ -21,7 +21,14 @@ div.dropzone
     /* a nice fade effect, visibility toggles after 175ms, opacity will animate for 175ms. note display:none cannot be animated.  */
     transition: visibility 175ms, opacity 175ms;
 }	
-	
+
+button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -80,13 +87,7 @@ window.addEventListener("dragleave", function(e)
  
 </script>
 
-<div class="columns is-mobile is-centered">
-  <div class="column is-half">
-    <p class="bd-notification is-primary">
-      <strong>Upload *zip,*.cbz,*.json</strong>
-    </p>
-  </div>
-</div>
+<button id=button class="button is-dark is-large">Upload</button>
 	  
 <article id=upload class="panel is-info">
 <div style="text-align: center">
