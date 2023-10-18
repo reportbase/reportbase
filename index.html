@@ -22,7 +22,8 @@ div.dropzone
     transition: visibility 175ms, opacity 175ms;
 }	
 
-.grid {
+.grid 
+{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   max-width: 960px;
@@ -57,11 +58,52 @@ div.dropzone
 	<form id=galleryform> 	
 	<input type="text" id="name" name="name">
 	<button type="submit">Show</button>
+	<button id=upload type="submit">Upload</button>
 	</form>
     
   </div>
 </section>
 <script>
+function upload()
+{
+	var email = document.getElementById("name").value;
+	if (!email)
+	    email = "reportbase@gmail.com";
+	    
+	var files = Array.from(input.files);
+	    for (var n = 0; n < files.length; ++n)
+	    {
+	      const file = files[n];
+	      const form = new FormData();
+	      form.append('file', file);
+	      form.append('title', file.name.split('.')[0]);
+	      form.append('email', email);
+
+	      fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
+	      {
+		'method': 'POST',
+		'body': form
+	      })
+		.then(function(response) 
+		      {
+			      if (response.ok)
+				return response.text()
+				throw Error(response.statusText);
+		      })
+		.then(function(results)
+		      {
+			      gridshow();
+		      })
+		.catch(error => console.log(error)); 
+	    }		
+	
+}
+
+window.addEventListener("unload", function(e)
+{
+    console.log(e)
+});
+	
 window.addEventListener("dragenter", function(e)
 {
     lastTarget = e.target; 
@@ -79,17 +121,8 @@ window.addEventListener("dragleave", function(e)
 });	 
  
 </script>
-
-<section class="section">	  
-<article id=upload class="panel is-info">
-	<div style="align:center">
-		<button id=button class="button is-dark is-medium"><strong>Upload</strong></button>
-    	</div>
-</article>
-</section>
 	  
 <section class="section">
-
 <div id="wrapper"></div>
 <script>
 function gridshow(results)
@@ -140,6 +173,11 @@ gridshow();
 </script>
 	
 <script>
+    function upload()
+    {
+	    
+    }
+	
     const upload = document.getElementById('upload');
     upload.addEventListener('click', async event => 
     {
@@ -158,36 +196,7 @@ gridshow();
 
 		input.onchange = function() 
 		{
-			var email = document.getElementById("name").value;
-		    	if (!email)
-			    email = "reportbase@gmail.com";
-			    
-			var files = Array.from(input.files);
-			    for (var n = 0; n < files.length; ++n)
-			    {
-			      const file = files[n];
-			      const form = new FormData();
-			      form.append('file', file);
-			      form.append('title', file.name.split('.')[0]);
-			      form.append('email', email);
-		
-			      fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
-			      {
-				'method': 'POST',
-				'body': form
-			      })
-		 		.then(function(response) 
-		                      {
-		                              if (response.ok)
-		                                return response.text()
-		                                throw Error(response.statusText);
-		                      })
-				.then(function(results)
-				      {
-					      gridshow();
-				      })
-		                .catch(error => console.log(error)); 
-			    }		
+			upload()
 		}
 		
 		input.click();	
