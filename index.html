@@ -64,7 +64,7 @@ div.dropzone
   </div>
 </section>
 <script>
-function upload()
+function uploadzips()
 {
 	var email = document.getElementById("name").value;
 	if (!email)
@@ -97,7 +97,7 @@ function upload()
 		.catch(error => console.log(error)); 
 	    }		
 	
-}
+} 
 
 window.addEventListener("drop", function(e)
 {
@@ -173,11 +173,6 @@ gridshow();
 </script>
 	
 <script>
-    function upload()
-    {
-	    
-    }
-	
     const upload = document.getElementById('upload');
     upload.addEventListener('click', async event => 
     {
@@ -194,9 +189,9 @@ gridshow();
 			setTimeout(resolve, 500);
 		};
 
-		input.onchange = function() 
+		input.onchange = function(e) 
 		{
-			upload()
+			uploadzips()
 		}
 		
 		input.click();	
