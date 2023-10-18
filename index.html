@@ -98,20 +98,22 @@ function uploadzips(files)
 	
 } 
 
-window.addEventListener("drop", function(e)
+document.body.addEventListener("drop", function(e)
 {
+        document.querySelector(".dropzone").style.visibility = "hidden";
+        document.querySelector(".dropzone").style.opacity = 0;
 	const files = e.dataTransfer.files;
-    uploadzips(files);
+    	uploadzips(files);
 });
 	
-window.addEventListener("dragenter", function(e)
+document.body.addEventListener("dragenter", function(e)
 {
     lastTarget = e.target; 
     document.querySelector(".dropzone").style.visibility = "";
     document.querySelector(".dropzone").style.opacity = 1;
 });
 
-window.addEventListener("dragleave", function(e)
+document.body.addEventListener("dragleave", function(e)
 {
     if(e.target === lastTarget || e.target === document)
     {
