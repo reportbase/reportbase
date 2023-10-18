@@ -98,7 +98,8 @@ function uploadzips(files)
 	
 } 
 
-document.body.addEventListener("drop", function(e)
+const dropZone = document.querySelector('body');
+dropZone.addEventListener('drop', (e) => 
 {
         document.querySelector(".dropzone").style.visibility = "hidden";
         document.querySelector(".dropzone").style.opacity = 0;
