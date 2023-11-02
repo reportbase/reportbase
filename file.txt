@@ -1,19 +1,215 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>zip-view</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<style>
+div.dropzone
+{
+    /* positions to point 0,0 - required for z-index */
+    position: fixed; top: 0; left: 0; 
+    /* above all elements, even if z-index is used elsewhere
+       it can be lowered as needed, but this value surpasses
+       all elements when used on YouTube for example. */
+    z-index: 9999999999;               
+    /* takes up 100% of page */
+    width: 100%; height: 100%;         
+    /* dim the page with 50% black background when visible */
+    background-color: rgba(0,0,0,0.5);
+    /* a nice fade effect, visibility toggles after 175ms, opacity will animate for 175ms. note display:none cannot be animated.  */
+    transition: visibility 175ms, opacity 175ms;
+}	
+
+.grid 
+{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  max-width: 960px;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid div {
+  padding: 0px;
+  #background: #ddd;
+}
+</style>  
+  </head>
   <body>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID">
-    <div class="g-signin2" data-onsuccess="handleCredentialResponse"></div>
-    <script>
-      function handleCredentialResponse(googleUser) {
-        ...
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://yourbackend.example.com/tokensignin');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-          console.log('Signed in as: ' + xhr.responseText);
-        };
-        xhr.send('idtoken=' + id_token);
-      }
-    </script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<section class="hero is-info">
+  <div class="hero-body">
+    <p class="title">
+      zip-view
+    </p>
+    <p class="subtitle">
+      Uploads/Downloads
+    </p>
+
+	<form id=galleryform> 	
+	<input type="text" id="name" name="name">	
+	<button type="submit" class="button is-dark is-small">Show</button>	
+	<button id=upload type="submit" class="button is-dark is-small">Upload</button>
+	</form>
+  </div>
+</section>
+<script>
+function uploadzips(files)
+{
+	var email = document.getElementById("name").value;
+	if (!email)
+	    email = "reportbase@gmail.com";
+	    
+	    for (var n = 0; n < files.length; ++n)
+	    {
+	      const file = files[n];
+	      const form = new FormData();
+	      form.append('file', file);
+	      form.append('title', file.name.split('.')[0]);
+	      form.append('email', email);
+
+	      fetch(`https://bucket.reportbase5836.workers.dev/bucket1`,
+	      {
+		'method': 'POST',
+		'body': form
+	      })
+		.then(function(response) 
+		      {
+			      if (response.ok)
+				return response.text()
+				throw Error(response.statusText);
+		      })
+		.then(function(results)
+		      {
+			      gridshow();
+		      })
+		.catch(error => console.log(error)); 
+	    }		
+} 
+
+document.body.addEventListener('drop', (e) => 
+{
+	//todo
+        document.querySelector(".dropzone").style.visibility = "hidden";
+        document.querySelector(".dropzone").style.opacity = 0;
+	const files = e.dataTransfer.files;
+    	uploadzips(files);
+});
+	
+document.body.addEventListener("dragenter", function(e)
+{
+    lastTarget = e.target; 
+    document.querySelector(".dropzone").style.visibility = "";
+    document.querySelector(".dropzone").style.opacity = 1;
+});
+
+document.body.addEventListener("dragleave", function(e)
+{
+    if(e.target === lastTarget || e.target === document)
+    {
+        document.querySelector(".dropzone").style.visibility = "hidden";
+        document.querySelector(".dropzone").style.opacity = 0;
+    }
+});	 
+</script>
+	  
+<section class="section">
+<div id="wrapper"></div>
+<script>
+function gridshow(results)
+{
+    	var email = document.getElementById("name").value;
+	if (!email)
+		email = "reportbase@gmail.com";
+	
+	fetch(`https://bucket.reportbase5836.workers.dev/zips/${email}`)
+	.then(function(response) 
+	      {
+		      if (response.ok)
+	 		return response.json()
+			throw Error(response.statusText);
+	      })
+	.then(function(results)
+	      {      
+		var str = `<div class="grid">`;     
+		for (var n = 0; n < results.length; ++n)
+		{
+			var result = results[n];
+			str += `
+   			<div class="card">
+			  <div class="card-image">
+			    <figure class="image is-4by3">
+			      <a href='https://zip-view.pages.dev/?r2=${result.id}'>
+			      	<img width=640 height=640 src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+	  		      </a>
+			    </figure>
+			  </div>
+			  <div class="card-content">
+			    <div class="content">
+			      ${result.title}' <a>@bulmaio</a>.
+			      <a href="#">#css</a> <a href="#">#responsive</a>
+			      <br>
+			      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+			    </div>
+			  </div>
+			</div>`
+   		}
+
+		str += "</div>";
+		document.getElementById("wrapper").innerHTML = str;      
+	})
+	.catch(error => console.log(error));
+}
+gridshow();
+</script>
+	
+<script>
+    const upload = document.getElementById('upload');
+    upload.addEventListener('click', async event => 
+    {
+	event.preventDefault();
+	var input = document.createElement("input");
+	input.type = "file";
+	input.multiple = true;
+	input.accept = ".zip,.cbz,.json,.png,.jpeg,.jpg,.webp,.gif,.avif";
+	return new Promise(function(resolve) 
+	{
+		document.activeElement.onfocus = function() 
+		{
+			document.activeElement.onfocus = null;
+			setTimeout(resolve, 500);
+		};
+
+		input.onchange = function() 
+		{
+			var files = Array.from(input.files);
+			uploadzips(files)
+		}
+		
+		input.click();	
+	});
+    })
+	
+    const galleryform = document.getElementById('galleryform');
+    galleryform.addEventListener('submit', async event => 
+    {
+	    event.preventDefault();
+	    gridshow(); 
+    })
+
+</script>    
+	
+  </section>
+<div style="visibility:hidden; opacity:0" class="dropzone"></div>	  
+
   </body>
 </html>
