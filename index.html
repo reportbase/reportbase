@@ -1,19 +1,42 @@
-      
-<html>
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-  <script src="https://apis.google.com/js/api:client.js"></script>
-  <script>
-  
-  </script>
-      
-  <div id="g_id_onload"
-     data-client_id="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com"
-     data-context="signin"
-     data-callback="callbackfunction"
-     data-auto_select="true"
-     data-itp_support="true">
-</div>
-      
-</body>
+     
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using one tap sigin"
+    />
+    <script src="https://accounts.google.com/gsi/client" async defer ></script>
+    <script>
+      window.onGoogleLibraryLoad = () => {
+      google.accounts.id.initialize({
+        client_id:'676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com',
+        cancel_on_tap_outside: false,
+        //callback: onOneTapSignedIn,
+        prompt_parent_id: "root",
+        //intermediate_iframe_close_callback : close_callback1
+      });
+      google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed()) {
+          console.log(notification.getNotDisplayedReason());
+        } else if (notification.isSkippedMoment()) {
+          console.log(notification.getSkippedReason());
+        } else if (notification.isDismissedMoment()) {
+          console.log(notification.getDismissedReason());
+        } else {
+          
+        }
+      });
+    }
+    </script>
+    <title>One tap Login App</title>
+  </head>
+  <body>
+    
+    <div id="root"></div>
+    
+  </body>
 </html>
