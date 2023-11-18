@@ -21,13 +21,20 @@
       });
       google.accounts.id.prompt((notification) => {
         if (notification.isNotDisplayed()) 
-          console.log(notification.getNotDisplayedReason());
+        {
+          var e = notification.getNotDisplayedReason();
+             console.log(e)
+        }
         else if (notification.isSkippedMoment()) 
-          console.log(notification.getSkippedReason());
+        {
+          var e = notification.getSkippedReason();
+             console.log(e);
+        }
         else if (notification.isDismissedMoment()) 
+        {
           var e = notification.getDismissedReason();
              console.log(e);
-          
+        }
       });
     }
     </script>
