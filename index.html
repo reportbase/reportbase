@@ -2,57 +2,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Google Sign In</title>
-
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-  <script type="module">
-    import {GoogleAuth} from 'https://www.google-web.dev/auth';
-
-    const googleAuth = new GoogleAuth({
-      clientId: '676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com'
-    }); 
-
-    function signIn() {
-      googleAuth.signIn()
-        .then(user => {
-          // Signed in successfully
-          console.log('Signed in as', user.getBasicProfile().getName());
-        })
-        .catch(error => {
-          // Error signing in
-          console.error('Error signing in', error);
-        });
-    }
-
-        signIn()
-  </script>
-
+  <title>Google Signin</title>
 </head>
-
 <body>
 
-  <h1>Google Sign In Demo</h1>
+  <div id="gsignin"></div>
 
-  <button onclick="signIn()">Sign in with Google</button>
-
-  <div id="profile"></div>
+  <div id="error"></div>
 
   <script>
-    function updateProfile(user) {
-      const profile = document.getElementById('profile');
-      profile.innerText = user.getBasicProfile().getName();
+    // Config
+    const googleClientConfig = {
+      client_id: 676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com, 
+      scope: 'profile email'
+    };
+
+    // Google auth URL
+    const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+    // Initialize signin
+    initGoogleSignin();
+
+    function initGoogleSignin() {
+      // Build signin url  
+      const params = new URLSearchParams(googleClientConfig).toString();
+      const signInUrl = `${googleAuthUrl}?${params}`;
+
+      // Set href to signin url
+      const gSignInBtn = document.getElementById('gsignin');
+      gSignInBtn.href = signInUrl;
+
+      // Handle redirect back
+      gSignInBtn.addEventListener('click', handleSigninRedirect);
     }
 
-    function signOut() {
-      googleAuth.signOut().then(() => {
-        updateProfile(null);
-      });
+    async function handleSigninRedirect(event) {
+      event.preventDefault();
+      
+      // Get auth code
+      const code = new URL(window.location.href).searchParams.get('code');
+      
+      // Handle errors
+      if(!code) {
+        showError('Error retrieving auth code');
+        return; 
+      }
+
+      try {
+        // Get tokens and user  
+        const tokenResponse = await fetchGoogleAccessToken(code);
+        const user = await fetchGoogleUserInfo(tokenResponse.access_token);
+
+        // Success 
+        signInUser(user);
+
+      } catch(error) {
+        showError('Error signing in user');  
+      }
     }
+
+    function showError(errorMsg) {
+      document.getElementById('error').innerText = errorMsg; 
+    }
+
   </script>
-
-  <button onclick="signOut()">Sign Out</button>
 
 </body>
 </html>
-
