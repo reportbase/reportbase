@@ -1,57 +1,37 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Google Sign-In Script --> 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  
+  <meta name="google-signin-client_id" content="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js"></script>
+
   <script>
-    function handleSignin(response) {
-      if (response.error) {
-        // Show error message
-        showError(response.error);
-        return;
-      } 
-    
-      // Success  
-      signInSuccess(response.credential);
-    }
-
-    function showError(error) {
-      // Display error message  
-      let errorElement = document.getElementById("error");
-      errorElement.innerText = error;
-      errorElement.style.display = "block"; 
-    } 
-
-    function signInSuccess(credential) {
-      // Save user to db
-      let user = decodeJwt(credential);  
-      saveUser(user);
+    function onSignIn(googleUser) {
+      // Get user profile info
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId());
     }
   </script>
+
 </head>
-
 <body>
-  <!-- Google Sign-in Button -->
-  <div id="g_id_onload" data-client_id="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com"></div>
-  <div id="g_id_signin" data-type="standard"></div>
 
-  <!-- Error Message -->
-  <p id="error" style="display:none;color:red;"></p>
+  <!-- Sign-in button -->
+  <div id="g-signin2" data-onsuccess="onSignIn"></div>
 
   <script>
-    google.accounts.id.initialize({
-      client_id: "676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com",
-      callback: handleSignin
-    });
-
-    google.accounts.id.renderButton(
-     document.getElementById("g_id_signin"),
-     {theme: "outline", size: "large"} 
-    );
+    function init() {
+      // Initialize Auth2
+      gapi.load('auth2', function() {
+        gapi.auth2.init({
+          client_id: 'YOUR_CLIENT_ID'
+        });
+      });
+    }
   </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=init"></script>
+
 </body>
 </html>
-
-
-
