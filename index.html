@@ -15,20 +15,22 @@
       google.accounts.id.initialize({
         client_id:'676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com',
         cancel_on_tap_outside: false,
-        //callback: onOneTapSignedIn,
+        callback: funciton(e)
+             {
+                console.log(e0;
+             },
         prompt_parent_id: "root",
         //intermediate_iframe_close_callback : close_callback1
       });
       google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed()) {
+        if (notification.isNotDisplayed()) 
           console.log(notification.getNotDisplayedReason());
-        } else if (notification.isSkippedMoment()) {
+        else if (notification.isSkippedMoment()) 
           console.log(notification.getSkippedReason());
-        } else if (notification.isDismissedMoment()) {
-          console.log(notification.getDismissedReason());
-        } else {
+        else if (notification.isDismissedMoment()) 
+          var e = notification.getDismissedReason();
+             console.log(e);
           
-        }
       });
     }
     </script>
