@@ -13,15 +13,25 @@
     <script>
          //https://www.youtube.com/watch?v=bdjrACgYJ60
           //https://piraces.dev/posts/how-to-use-google-one-tap/
-         
+         //https://googleonetap.developer.li/
+      //https://github.com/piraces/GoogleOneTapSample
+
+   window.isAuthenticated = false;
+
+    
+      
       window.onGoogleLibraryLoad = () => {
       google.accounts.id.initialize({
         client_id:'676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com',
-        //cancel_on_tap_outside: false,
-        //callback: ,
-        prompt_parent_id: "root",
-        //intermediate_iframe_close_callback : close_callback1
+        callback: handleCredentialResponse,
+        auto_select: "true",
       });
+    
+    //google.accounts.id.renderButton(
+    //    document.getElementById("buttonDiv"),
+    //    { theme: "outline", size: "large" }  // customization attributes
+    //);
+  
       google.accounts.id.prompt((notification) => {
         if (notification.isNotDisplayed()) 
         {
@@ -40,6 +50,32 @@
         }
       });
     }
+
+let b64DecodeUnicode = str =>
+  decodeURIComponent(
+    Array.prototype.map.call(atob(str), c =>
+      '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    ).join(''))
+
+let parseJwt = token =>
+  JSON.parse(
+    b64DecodeUnicode(
+      token.split('.')[1].replace('-', '+').replace('_', '/')
+    )
+  )  
+
+   window.isAuthenticated = false;
+window.identity = {};
+window.token = '';
+
+ function handleCredentialResponse(response) 
+ {
+    window.token = response.credential;
+    window.identity = parseJwt(response.credential);
+    window.isAuthenticated = true
+}     
+
+      
     </script>
     <title>One tap Login App</title>
   </head>
