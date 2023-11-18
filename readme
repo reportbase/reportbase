@@ -1,37 +1,42 @@
-
-
+  
 <!DOCTYPE html>
 <html>
 <head>
   <meta name="google-signin-client_id" content="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+
+  <div id="g-signin2"></div>
+
+  <p id="error" style="color: red; display: none;">Error message</p>
 
   <script>
     function onSignIn(googleUser) {
-      // Get user profile info
-      var profile = googleUser.getBasicProfile();
+      // Show profile info
+      let profile = googleUser.getBasicProfile();
       console.log('ID: ' + profile.getId());
     }
-  </script>
 
-</head>
-<body>
+    function onFailure(error) {
+      // Show error message
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error').innerText = error.error;
+    }
 
-  <!-- Sign-in button -->
-  <div id="g-signin2" data-onsuccess="onSignIn"></div>
-
-  <script>
-    function init() {
-      // Initialize Auth2
-      gapi.load('auth2', function() {
-        gapi.auth2.init({
-          client_id: 'YOUR_CLIENT_ID'
-        });
+    function renderButton() {
+      gapi.signin2.render('g-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSignIn,
+        'onfailure': onFailure 
       });
     }
   </script>
-
-  <script src="https://apis.google.com/js/platform.js?onload=init"></script>
 
 </body>
 </html>
