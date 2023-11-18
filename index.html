@@ -1,42 +1,56 @@
+      
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Google Sign In Example</title>
+  <title>Google Sign In</title>
 
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <script type="module">
-    import {GoogleAuth, AuthIdConfig} from 'https://www.google-web.dev/auth';
+    import {GoogleAuth} from 'https://www.google-web.dev/auth';
 
-    const config: AuthIdConfig = {
-      client_id: '676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com'  
-    };
-    
-    const auth = new GoogleAuth({
-      config,
-      uxMode: 'popup',
-      signInSuccessUrl: '/',
-    })
-
-    function handleSignIn(response) {
-      // Get profile info
-      auth.getUser().then(user => {
-        console.log(user.getId());
-      });
-    }
+    const googleAuth = new GoogleAuth({
+      clientId: '676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com'
+    }); 
 
     function signIn() {
-      auth.signIn().then(handleSignIn);
+      googleAuth.signIn()
+        .then(user => {
+          // Signed in successfully
+          console.log('Signed in as', user.getBasicProfile().getName());
+        })
+        .catch(error => {
+          // Error signing in
+          console.error('Error signing in', error);
+        });
     }
   </script>
 
 </head>
+
 <body>
 
-  <h1>Google Sign In Example</h1>
+  <h1>Google Sign In Demo</h1>
 
   <button onclick="signIn()">Sign in with Google</button>
 
+  <div id="profile"></div>
+
+  <script>
+    function updateProfile(user) {
+      const profile = document.getElementById('profile');
+      profile.innerText = user.getBasicProfile().getName();
+    }
+
+    function signOut() {
+      googleAuth.signOut().then(() => {
+        updateProfile(null);
+      });
+    }
+  </script>
+
+  <button onclick="signOut()">Sign Out</button>
+
 </body>
-</html>  
-  
+</html>
+
