@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
-  
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  
-  
-  <meta name="google-signin-client_id" content="676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com">
-  
-  
-</head>
-  
-<body>
+  <title>Google Sign In Example</title>
 
-  <div id="g-signin2"></div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-  <p id="error" style="color: red; display: none;">Error message</p>
+  <script type="module">
+    import {GoogleAuth, AuthIdConfig} from 'https://www.google-web.dev/auth';
 
-  <script>
-    function onSignIn(googleUser) {
-      // Show profile info
-      let profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId());
-    }
+    const config: AuthIdConfig = {
+      client_id: '676848032016-7rdfc1a1gse8olfh399kfqtahqvu5ci5.apps.googleusercontent.com'  
+    };
+    
+    const auth = new GoogleAuth({
+      config,
+      uxMode: 'popup',
+      signInSuccessUrl: '/',
+    })
 
-    function onFailure(error) {
-      // Show error message
-      document.getElementById('error').style.display = 'block';
-      document.getElementById('error').innerText = error.error;
-    }
-
-    function renderButton() {
-      gapi.signin2.render('g-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSignIn,
-        'onfailure': onFailure 
+    function handleSignIn(response) {
+      // Get profile info
+      auth.getUser().then(user => {
+        console.log(user.getId());
       });
+    }
+
+    function signIn() {
+      auth.signIn().then(handleSignIn);
     }
   </script>
 
+</head>
+<body>
+
+  <h1>Google Sign In Example</h1>
+
+  <button onclick="signIn()">Sign in with Google</button>
+
 </body>
-</html>
+</html>  
+  
